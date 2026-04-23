@@ -12,7 +12,7 @@ public class App {
         };
 
         System.out.println(StringUtils.repeat("=", 40));
-        System.out.println("  KSIT Student Grade Report");
+        System.out.println("  Hello, KSIT Student Grade Report");
         System.out.println(StringUtils.repeat("=", 40));
 
         for (Student s : students) {
