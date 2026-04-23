@@ -1,0 +1,10 @@
+# Maven build output
+target/
+
+# Gradle project (separate tool — not needed in Azure Repos)
+student-gradle/
+
+# Windows files
+*.class
+*.jar
+Thumbs.db
