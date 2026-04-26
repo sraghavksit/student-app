@@ -1,13 +1,11 @@
 package com.ksit;
-import junit.framework.TestCase;
 
-public class AppTest extends TestCase {
-    public void testGradeDistinction() {
-        Student s = new Student("Test", 92);
-        assertEquals("Distinction", s.getGrade());
-    }
-    public void testGradeFail() {
-        Student s = new Student("Test", 35);
-        assertEquals("Fail", s.getGrade());
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class AppTest {
+    @Test
+    public void testGreet() {
+        assertEquals("Hello, KSIT DevOps Lab!", App.greet("KSIT DevOps Lab"));
     }
 }
