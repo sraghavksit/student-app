@@ -6,6 +6,6 @@ public class App {
     }
 
     public static void main(String[] args) {
-        System.out.println(greet("KSIT DevOps Lab"));
+        System.out.println(greet("KSIT DevOps Lab - Program 12 Complete Pipeline!"));
     }
 }
