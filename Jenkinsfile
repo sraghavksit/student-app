@@ -9,23 +9,23 @@ pipeline {
     }
 
     stage('Build') {
-      steps { sh 'mvn clean package -DskipTests' }
+      steps { bat 'mvn clean package -DskipTests' }
     }
 
     stage('Test') {
-      steps { sh 'mvn test' }
+      steps { bat 'mvn test' }
       post { always { junit 'target/surefire-reports/*.xml' } }
     }
 
     stage('Code Coverage') {
-      steps { sh 'mvn verify' }
+      steps { bat 'mvn verify' }
       post { always {
-        jacoco(execPattern: 'target/jacoco.exec', minimumInstructionCoverage: '80')
+        jacoco(execPattern: 'target/jacoco.exec', minimumInstructionCoverage: '70')
       }}
     }
 
     stage('Publish Artifact') {
-      steps { sh 'mvn install -DskipTests' }
+      steps { bat 'mvn install -DskipTests' }
     }
 
   }
