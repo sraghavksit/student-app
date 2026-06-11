@@ -1,0 +1,34 @@
+---
+- name: Deploy Student App
+  hosts: webservers
+  become: yes
+
+  vars:
+    app_name: student-app
+    artifact_path: /mnt/c/ProgramData/Jenkins/.jenkins/workspace/student-app-pipeline/target/student-app-1.0-SNAPSHOT.jar
+    deploy_dir: /opt/student-app
+    app_port: 8080
+
+  tasks:
+
+    - name: Ensure deploy directory exists
+      file:
+        path: "{{ deploy_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Copy artifact to deploy directory
+      copy:
+        src: "{{ artifact_path }}"
+        dest: "{{ deploy_dir }}/{{ app_name }}.jar"
+        mode: '0755'
+
+    - name: Stop existing application if running
+      shell: pgrep -f "{{ app_name }}.jar" | xargs kill 2>/dev/null
+      failed_when: false
+      changed_when: false
+
+    - name: Start the application
+      shell: nohup java -jar {{ deploy_dir }}/{{ app_name }}.jar > /tmp/student-app.log 2>&1 &
+      changed_when: false
+
